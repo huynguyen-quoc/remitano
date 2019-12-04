@@ -1,5 +1,6 @@
 package com.huynguyen.videosharing.controllers;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -8,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -20,12 +22,15 @@ import com.huynguyen.videosharing.mapper.videos.VideoMapper;
 import com.huynguyen.videosharing.provider.TokenProvider;
 import com.huynguyen.videosharing.services.UserService;
 import com.huynguyen.videosharing.services.VideoService;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -74,7 +79,7 @@ class VideoControllerTest {
   }
 
   @Test
-  void createShouldReturnCorrectUserAndCorrectHttpStatusAndCallServiceATimes()
+  public void createShouldReturnCorrectUserAndCorrectHttpStatusAndCallServiceATimes()
       throws Exception {
 
     VideoDTO request = VideoDTO.builder().url("test")
@@ -101,6 +106,30 @@ class VideoControllerTest {
         .andExpect(jsonPath("$.description", is(response.getDescription())));
 
     verify(videoService, times(1)).create(any(Video.class), any(User.class));
+  }
+
+
+  @Test
+  @SuppressWarnings("unchecked")
+  public void findAllShouldReturnCorrectPagedVideoAndCallServiceOneTimes() throws Exception {
+    Video mockVideo = mock(Video.class);
+    VideoResponseDTO response = VideoResponseDTO.builder().id(mockVideo.getId())
+        .url("test_url").description("test_description").title("test_title").build();
+    Page<Video> mockPage = mock(Page.class);
+    when(mockPage.get()).thenReturn(Stream.<Video>builder().add(mockVideo).build());
+    when(videoMapper.transform(mockVideo)).thenReturn(response);
+    when(videoService.findAll(any(Pageable.class))).thenReturn(mockPage);
+
+    mockMvc.perform(get("/videos")
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.data", hasSize(1)))
+        .andExpect(jsonPath("$.data[0].title", is(response.getTitle())))
+        .andExpect(jsonPath("$.data[0].description", is(response.getDescription())))
+        .andExpect(jsonPath("$.data[0].url", is(response.getUrl())));
+
+    verify(videoService, times(1)).findAll(any(Pageable.class));
   }
 
 }

@@ -51,7 +51,7 @@ public class VideoController {
   @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {
       MediaType.APPLICATION_JSON_VALUE})
   @Transactional(readOnly = true)
-  public ResponseEntity<PageDataResponse<VideoResponseDTO>> get() {
+  public ResponseEntity<PageDataResponse<VideoResponseDTO>> findAll() {
     log.info("list videos with page");
     PageRequest pageRequest = PageRequest.of(0, 30);
     Page<Video> videoPage = service.findAll(pageRequest);
