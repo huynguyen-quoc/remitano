@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+spring:
+  profiles:
+    active: local
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    mapper:
+      accept-case-insensitive-enums: true
+  application:
+    name: video-sharing
+  datasource:
+    hikari:
+      max-lifetime: 900000
+      connection-timeout: 50000
+      pool-name: ${spring.application.name}-${spring.profiles.active}-pool
+    url: jdbc:postgresql://postgres:5432/project_${spring.profiles.active}
+    username: user
+    password: password
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        generate_statistics: false
+        jdbc:
+          batch_size: 50
+    show-sql: false
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+    enabled: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X] %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex"
+  level:
+    "org.apache.kafka": error
+    "org.springframework.cache": error
+    "net.ttddyy.dsproxy": warn
