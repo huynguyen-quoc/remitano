@@ -32,3 +32,40 @@ databaseChangeLog:
                   name: last_modified_at
                   type: TIMESTAMP
             tableName: users
+  - changeSet:
+      id: '04Dec2019-132500'
+      author: huy_nguyenquoc_vn
+      dbms: 'postgresql'
+      rollback:
+        changes:
+          - dropTable:
+              tableName: videos
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_videos
+              - column:
+                  name: title
+                  type: VARCHAR(100)
+              - column:
+                  name: url
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  name: last_modified_at
+                  type: TIMESTAMP
+            tableName: videos
+

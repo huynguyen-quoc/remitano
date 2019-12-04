@@ -4,15 +4,12 @@ import com.huynguyen.videosharing.domain.dto.request.UserDTO;
 import com.huynguyen.videosharing.domain.dto.response.UserResponseDTO;
 import com.huynguyen.videosharing.domain.model.User;
 import com.huynguyen.videosharing.mapper.users.UsersMapper;
-import com.huynguyen.videosharing.provider.TokenProvider;
 import com.huynguyen.videosharing.services.UserService;
 import com.huynguyen.videosharing.utils.ResponseFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +32,7 @@ public class UserController {
       @RequestBody UserDTO request) {
     User model = mapper.transform(request);
     model.setPassword(passwordEncoder.encode(model.getPassword()));
+    log.info("create users with info {}", model);
     UserResponseDTO response = mapper
         .transform(service.create(model));
     return ResponseFactory.created(response);

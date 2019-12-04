@@ -1,10 +1,12 @@
 package com.huynguyen.videosharing.configuration.security;
 
+import com.huynguyen.videosharing.domain.model.User;
 import com.huynguyen.videosharing.provider.TokenProvider;
 import com.huynguyen.videosharing.services.UserService;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
   @Override
   protected void doFilterInternal(HttpServletRequest httpServletRequest,
-      HttpServletResponse httpServletResponse, FilterChain filterChain) {
+      HttpServletResponse httpServletResponse, FilterChain filterChain)
+      throws IOException, ServletException {
     try {
 
       String jwt = getJWTFromRequest(httpServletRequest);
@@ -38,21 +41,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       }
 
       Map<String, Object> claims = tokenProvider.parse(jwt);
-      Long id = Long.valueOf((String) claims.get("id"));
+      Long id = Long.valueOf(claims.get("id").toString());
 
-      userService.get(id).ifPresent(user -> {
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-            user, null, Collections.emptyList());
+      Optional<User> user = userService.get(id);
 
-        authentication
-            .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-      });
+      if (!user.isPresent()) {
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
+        return;
+      }
+      UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+          user.get(), null, Collections.emptyList());
+
+      authentication
+          .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+
 
     } catch (Exception ex) {
       logger.error("Could not set user authentication in security context", ex);
     }
-
+    filterChain.doFilter(httpServletRequest, httpServletResponse);
   }
 
   private String getJWTFromRequest(HttpServletRequest request) {

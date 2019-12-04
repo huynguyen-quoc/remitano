@@ -23,7 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Table(name = "users")
 @EqualsAndHashCode(callSuper = true)
-@ToString
+@ToString(exclude = {"password"})
 @Entity
 @Getter
 @NoArgsConstructor(force = true)
