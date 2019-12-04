@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -51,9 +52,13 @@ public class VideoController {
   @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {
       MediaType.APPLICATION_JSON_VALUE})
   @Transactional(readOnly = true)
-  public ResponseEntity<PageDataResponse<VideoResponseDTO>> findAll() {
+  public ResponseEntity<PageDataResponse<VideoResponseDTO>> findAll(
+      @RequestParam(value = "page_index", required = false) Integer pageIndex,
+      @RequestParam(value = "page_size", required = false) Integer pageSize) {
     log.info("list videos with page");
-    PageRequest pageRequest = PageRequest.of(0, 30);
+    pageIndex = pageIndex != null ? pageIndex : 0;
+    pageSize = pageSize != null && pageSize <= 50 ? pageSize : 50;
+    PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
     Page<Video> videoPage = service.findAll(pageRequest);
     List<VideoResponseDTO> videos = videoPage.get().map(
         mapper::transform).collect(Collectors.toList());

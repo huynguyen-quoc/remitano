@@ -8,8 +8,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -72,7 +72,8 @@ class VideoControllerTest {
   @BeforeEach
   void setUp() {
     User principal = mock(User.class);
-    Authentication authentication = new UsernamePasswordAuthenticationToken(principal, principal.getPassword(), principal.getAuthorities());
+    Authentication authentication = new UsernamePasswordAuthenticationToken(principal,
+        principal.getPassword(), principal.getAuthorities());
     SecurityContext context = SecurityContextHolder.createEmptyContext();
     context.setAuthentication(authentication);
     SecurityContextHolder.setContext(context);
@@ -121,6 +122,32 @@ class VideoControllerTest {
     when(videoService.findAll(any(Pageable.class))).thenReturn(mockPage);
 
     mockMvc.perform(get("/videos")
+        .param("page_index", "0")
+        .param("page_size", "50")
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.data", hasSize(1)))
+        .andExpect(jsonPath("$.data[0].title", is(response.getTitle())))
+        .andExpect(jsonPath("$.data[0].description", is(response.getDescription())))
+        .andExpect(jsonPath("$.data[0].url", is(response.getUrl())));
+
+    verify(videoService, times(1)).findAll(any(Pageable.class));
+  }
+
+  @Test
+  @SuppressWarnings("unchecked")
+  public void findAllShouldReturnCorrectPagedVideoAndCallServiceOneTimesWhenPageSizeAndPageIndexWrong() throws Exception {
+    Video mockVideo = mock(Video.class);
+    VideoResponseDTO response = VideoResponseDTO.builder().id(mockVideo.getId())
+        .url("test_url").description("test_description").title("test_title").build();
+    Page<Video> mockPage = mock(Page.class);
+    when(mockPage.get()).thenReturn(Stream.<Video>builder().add(mockVideo).build());
+    when(videoMapper.transform(mockVideo)).thenReturn(response);
+    when(videoService.findAll(any(Pageable.class))).thenReturn(mockPage);
+
+    mockMvc.perform(get("/videos")
+        .param("page_size", "51")
         .contentType(MediaType.APPLICATION_JSON_VALUE)
         .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
