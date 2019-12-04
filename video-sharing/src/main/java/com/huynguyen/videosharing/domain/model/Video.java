@@ -46,7 +46,7 @@ public class Video extends Auditable<Long> {
 
   @Setter
   @Basic(fetch = FetchType.LAZY)
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private User user;
 }

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Getter
 @NoArgsConstructor(force = true)
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class User extends Auditable<Long> implements UserDetails {
 

@@ -4,6 +4,8 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -55,7 +57,6 @@ class TokenControllerTest {
   @MockBean
   private AuthenticationManager authenticationManager;
 
-
   @Test
   void generateTokenShouldReturnCorrectTokenAndCorrectHttpStatusAndCallServiceATimes()
       throws Exception {
@@ -75,5 +76,7 @@ class TokenControllerTest {
         .andExpect(status().isCreated())
         .andExpect(jsonPath("$.type", is("bearer")))
         .andExpect(jsonPath("$.token", is("token_text")));
+
+    verify(authenticationManager, times(1)).authenticate(any(Authentication.class));
   }
 }

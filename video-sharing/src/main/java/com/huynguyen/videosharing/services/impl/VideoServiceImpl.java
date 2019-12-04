@@ -6,6 +6,8 @@ import com.huynguyen.videosharing.repository.VideoRepository;
 import com.huynguyen.videosharing.services.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,5 +21,10 @@ public class VideoServiceImpl implements VideoService {
   public Video create(Video video, User user) {
     video.setUser(user);
     return repository.save(video);
+  }
+
+  @Override
+  public Page<Video> findAll(Pageable pageable) {
+    return repository.findAll(pageable);
   }
 }

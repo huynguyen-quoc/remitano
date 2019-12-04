@@ -4,6 +4,8 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyChar;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -79,5 +81,7 @@ class UserControllerTest {
         .andExpect(jsonPath("$.id", is(response.getId().intValue())))
         .andExpect(jsonPath("$.status", is(response.getStatus().name())))
         .andExpect(jsonPath("$.username", is(response.getUsername())));
+
+    verify(userService, times(1)).create((any(User.class)));
   }
 }
