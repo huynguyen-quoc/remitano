@@ -1,30 +1,31 @@
+HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
-.DS_Store
-mvnw.cmd
-.mvn
+!**/src/main/**
+!**/src/test/**
 
 ### STS ###
 .apt_generated
-.factorypath
-.springBeans
-
-### Eclipse ###
 .classpath
+.factorypath
 .project
-.settings/
+.settings
+.springBeans
+.sts4-cache
 
 ### IntelliJ IDEA ###
-.idea/
+.idea
 *.iws
 *.iml
 *.ipr
 
 ### NetBeans ###
-nbproject/private/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
 
+### VS Code ###
+.vscode/
