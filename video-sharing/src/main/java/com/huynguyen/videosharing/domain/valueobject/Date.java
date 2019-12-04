@@ -25,4 +25,8 @@ public class Date implements ValueObject {
   private static final long serialVersionUID = -1957743697798068486L;
   @JsonValue
   private LocalDate value;
+
+  public static Date now() {
+    return Date.builder().value(LocalDate.now()).build();
+  }
 }

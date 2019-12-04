@@ -2,6 +2,7 @@ package com.huynguyen.videosharing.domain.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.huynguyen.videosharing.domain.ValueObject;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -25,4 +26,8 @@ public class DateTime implements ValueObject {
   private static final long serialVersionUID = -1957743697798068486L;
   @JsonValue
   private LocalDateTime value;
+
+  public static DateTime now() {
+    return DateTime.builder().value(LocalDateTime.now()).build();
+  }
 }

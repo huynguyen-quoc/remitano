@@ -23,9 +23,6 @@ databaseChangeLog:
                   name: password
                   type: VARCHAR(255)
               - column:
-                  name: email
-                  type: VARCHAR(100)
-              - column:
                   name: status
                   type: VARCHAR(25)
               - column:

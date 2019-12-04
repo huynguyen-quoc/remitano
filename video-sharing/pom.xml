@@ -32,6 +32,7 @@
     <mapstruct.version>1.3.0.Final</mapstruct.version>
 
     <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
+    <jjwt.version>0.9.1</jjwt.version>
 
   </properties>
 
@@ -107,6 +108,12 @@
       <artifactId>datasource-proxy</artifactId>
       <version>${datasource.proxy.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>${jjwt.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -152,6 +159,8 @@
                 <excludes>
                   <exclude>**/domain/**</exclude>
                   <exclude>**/mapper/**</exclude>
+                  <exclude>**/exceptions/**</exclude>
+                  <exclude>**/configuration/**</exclude>
                   <exclude>**/*Application.*</exclude>
                 </excludes>
               </configuration>
@@ -165,6 +174,8 @@
                 <excludes>
                   <exclude>**/domain/**</exclude>
                   <exclude>**/mapper/**</exclude>
+                  <exclude>**/exceptions/**</exclude>
+                  <exclude>**/configuration/**</exclude>
                   <exclude>**/*Application.*</exclude>
                 </excludes>
               </configuration>

@@ -12,10 +12,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 @Builder
-public class UserDTO implements Request {
+public class VideoSharingDTO implements Request {
 
   private static final long serialVersionUID = 2005762300608840196L;
 
-  private final String username;
-  private final String password;
+  private final String url;
+  private final String title;
+  private final String description;
 }

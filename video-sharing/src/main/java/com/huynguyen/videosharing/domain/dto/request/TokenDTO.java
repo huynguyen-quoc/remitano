@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 @Builder
-public class UserDTO implements Request {
+public class TokenDTO implements Request {
 
   private static final long serialVersionUID = 2005762300608840196L;
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.huynguyen.videosharing.domain.ValueObject;
 import java.time.Instant;
+import java.time.LocalDate;
 import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,9 +29,8 @@ public class Timestamp implements ValueObject {
   @JsonValue
   private Instant value;
 
-  @JsonCreator
-  public Timestamp(String value) {
-    this.value = Instant.parse(value);
+  public static Timestamp now() {
+    return Timestamp.builder().value(Instant.now()).build();
   }
 
 }

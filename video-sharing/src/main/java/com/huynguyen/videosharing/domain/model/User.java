@@ -2,6 +2,7 @@ package com.huynguyen.videosharing.domain.model;
 
 
 import com.huynguyen.videosharing.domain.enums.UserStatus;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
@@ -17,6 +18,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Table(name = "users")
 @EqualsAndHashCode(callSuper = true)
@@ -25,7 +28,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @NoArgsConstructor(force = true)
 @EntityListeners(AuditingEntityListener.class)
-public class User extends Auditable<Long> {
+public class User extends Auditable<Long> implements UserDetails {
 
   private static final long serialVersionUID = 304422261498869882L;
   @Id
@@ -41,9 +44,31 @@ public class User extends Auditable<Long> {
   private String password;
 
   @Setter
-  private String email;
-
-  @Setter
   @Enumerated(EnumType.STRING)
   private UserStatus status;
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return null;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 }

@@ -1,16 +1,19 @@
 package com.huynguyen.videosharing.controllers;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyChar;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.huynguyen.videosharing.domain.dto.request.TokenDTO;
 import com.huynguyen.videosharing.domain.dto.request.UserDTO;
+import com.huynguyen.videosharing.domain.dto.response.TokenResponseDTO;
 import com.huynguyen.videosharing.domain.dto.response.UserResponseDTO;
 import com.huynguyen.videosharing.domain.enums.UserStatus;
 import com.huynguyen.videosharing.domain.model.User;
@@ -23,16 +26,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(controllers = {UserController.class})
+@WebMvcTest(controllers = {TokenController.class})
 @AutoConfigureMockMvc(addFilters = false)
-class UserControllerTest {
+class TokenControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -41,43 +44,36 @@ class UserControllerTest {
   private UserService userService;
 
   @MockBean
-  private UsersMapper usersMapper;
-
-  @MockBean
-  private TokenProvider tokenProvider;
-
-  @MockBean
   private AuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
   @MockBean
   private UserDetailsService userDetailsService;
 
   @MockBean
-  private PasswordEncoder passwordEncoder;
+  private TokenProvider tokenProvider;
+
+  @MockBean
+  private AuthenticationManager authenticationManager;
+
 
   @Test
-  public void createShouldReturnCorrectUserAndCorrectHttpStatusAndCallServiceATimes()
+  void generateTokenShouldReturnCorrectTokenAndCorrectHttpStatusAndCallServiceATimes()
       throws Exception {
-
-    UserDTO request = UserDTO.builder().password("test")
+    TokenDTO request = TokenDTO.builder().password("test")
         .username("test_username").build();
     ObjectMapper objectMapper = new ObjectMapper();
     String jsonString = objectMapper.writeValueAsString(request);
-    User model = mock(User.class);
-    UserResponseDTO response = UserResponseDTO.builder().id(model.getId())
-        .status(UserStatus.CREATED).username(model.getUsername()).build();
-    when(usersMapper.transform(model)).thenReturn(response);
-    when(usersMapper.transform(request)).thenReturn(model);
-    when(userService.create(any(User.class))).thenReturn(model);
-    when(passwordEncoder.encode(any(CharSequence.class))).thenReturn("encrypted_text");
+    Authentication mockAuthentication = mock(Authentication.class);
 
-    mockMvc.perform(post("/users")
+    when(authenticationManager.authenticate(any(Authentication.class))).thenReturn(mockAuthentication);
+    when(tokenProvider.generate(any(Authentication.class))).thenReturn("token_text");
+
+    mockMvc.perform(post("/token")
         .content(jsonString)
         .contentType(MediaType.APPLICATION_JSON_VALUE)
         .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.id", is(response.getId().intValue())))
-        .andExpect(jsonPath("$.status", is(response.getStatus().name())))
-        .andExpect(jsonPath("$.username", is(response.getUsername())));
+        .andExpect(jsonPath("$.type", is("bearer")))
+        .andExpect(jsonPath("$.token", is("token_text")));
   }
 }
