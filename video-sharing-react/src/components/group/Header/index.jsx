@@ -8,7 +8,7 @@ import classnames from "classnames";
 
 class Header extends PureComponent {
   static propTypes = {
-    authenticate: PropTypes.func.isRequired,
+    create: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
   };
@@ -45,10 +45,10 @@ class Header extends PureComponent {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { authenticate } = this.props;
+    const { create } = this.props;
     const { email, password } = this.state;
 
-    authenticate({ email: email, password: password });
+    create({ email: email, password: password });
   }
 
   render() {

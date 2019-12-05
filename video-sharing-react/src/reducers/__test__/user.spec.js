@@ -12,6 +12,11 @@ describe("User Reducers", () => {
     ).toMatchSnapshot();
   });
 
+  it(`should handle ${ActionTypes.USER_CREATE}`, () => {
+    expect(
+      reducer.user(undefined, { type: ActionTypes.USER_CREATE })
+    ).toMatchSnapshot();
+  });
   it(`should handle ${ActionTypes.USER_LOGIN_SUCCESS}`, () => {
     const actions = {
       type: ActionTypes.USER_LOGIN_SUCCESS,

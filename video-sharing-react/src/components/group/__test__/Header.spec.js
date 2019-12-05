@@ -13,11 +13,7 @@ describe("Header Component", () => {
     info: { email: "test" }
   };
   const wrapper = shallow(
-    <Header
-      authenticate={authenticateMock}
-      logout={logoutMock}
-      user={userMock}
-    />
+    <Header create={authenticateMock} logout={logoutMock} user={userMock} />
   );
 
   it("should render properly", () => {
@@ -27,16 +23,12 @@ describe("Header Component", () => {
   it("should render properly with authentication", () => {
     userMock.isAuthenticated = true;
     const wrapperAuthentication = shallow(
-      <Header
-        authenticate={authenticateMock}
-        logout={logoutMock}
-        user={userMock}
-      />
+      <Header create={authenticateMock} logout={logoutMock} user={userMock} />
     );
     expect(wrapperAuthentication).toMatchSnapshot();
   });
 
-  it("should dispatch an login action when handle submit", () => {
+  it("should dispatch an create action when handle submit", () => {
     wrapper.setState({ email: "email", password: "password" });
     const event = { preventDefault: () => {} };
     wrapper.instance().handleSubmit(event);

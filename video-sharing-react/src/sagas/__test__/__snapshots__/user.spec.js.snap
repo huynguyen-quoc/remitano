@@ -29,6 +29,19 @@ Object {
       },
       "type": "FORK",
     },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "USER_CREATE",
+          "@@redux-saga-test-plan/json/function/create",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
   ],
   "take": Array [
     Object {
@@ -44,6 +57,14 @@ Object {
       "combinator": false,
       "payload": Object {
         "pattern": "USER_LOGOUT",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "USER_CREATE",
       },
       "type": "TAKE",
     },

@@ -1,3 +1,3 @@
-import { login, logout } from "./user";
+import { create, login, logout } from "./user";
 
-export { login, logout };
+export { login, logout, create };

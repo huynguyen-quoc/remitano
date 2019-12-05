@@ -7,6 +7,9 @@ databaseChangeLog:
         changes:
           - dropTable:
               tableName: users
+          - dropIndex:
+              indexName: idx_users_01
+              tableName: users
       changes:
         - createTable:
             columns:
@@ -32,6 +35,13 @@ databaseChangeLog:
                   name: last_modified_at
                   type: TIMESTAMP
             tableName: users
+        - createIndex:
+            columns:
+              - column:
+                  name: email
+            indexName: idx_users_01
+            tableName: users
+            unique: true
   - changeSet:
       id: '04Dec2019-132500'
       author: huy_nguyenquoc_vn
@@ -68,4 +78,5 @@ databaseChangeLog:
                   name: last_modified_at
                   type: TIMESTAMP
             tableName: videos
+
 

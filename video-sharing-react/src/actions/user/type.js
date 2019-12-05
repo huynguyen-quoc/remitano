@@ -1,6 +1,7 @@
-import keyMirror  from "keymirror";
+import keyMirror from "keymirror";
 
 export const ActionTypes = keyMirror({
+  USER_CREATE: undefined,
   USER_LOGIN: undefined,
   USER_LOGIN_SUCCESS: undefined,
   USER_LOGIN_FAILURE: undefined,

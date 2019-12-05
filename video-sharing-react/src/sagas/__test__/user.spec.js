@@ -1,6 +1,6 @@
 import * as matchers from "redux-saga-test-plan/matchers";
 
-import user, { authenticate, logout } from "sagas/user";
+import user, { authenticate, create, logout } from "sagas/user";
 
 import { ActionTypes } from "actions/user/type";
 import { expectSaga } from "redux-saga-test-plan";
@@ -32,6 +32,20 @@ describe("User Sagas", () => {
           email: "test2@gmail.com",
           id: 1
         }
+      })
+      .run();
+  });
+
+  it("should match the create saga", () => {
+    const fakeUser = {
+      id: 1,
+      email: "test@gmail"
+    };
+    expectSaga(create, { payload: { email: "email", password: "password" } })
+      .provide([[matchers.call.fn(request), fakeUser]])
+      .put({
+        type: ActionTypes.USER_LOGIN,
+        payload: { email: "email", password: "password" }
       })
       .run();
   });

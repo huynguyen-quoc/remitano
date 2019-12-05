@@ -1,4 +1,4 @@
-import { login, logout } from "actions";
+import { create, logout } from "actions";
 
 import MainScreen from "components/screens/Main";
 import NotFoundScreen from "containers/screens/NotFound";
@@ -8,7 +8,7 @@ import { shallow } from "enzyme";
 
 describe("Main Screen", () => {
   const mockDispatching = jest.fn();
-  const authenticateMock = bindActionCreators(login, mockDispatching);
+  const authenticateMock = bindActionCreators(create, mockDispatching);
   const logoutMock = bindActionCreators(logout, mockDispatching);
   const userMock = {
     isAuthenticated: false,
@@ -17,7 +17,7 @@ describe("Main Screen", () => {
   const wrapper = shallow(
     <MainScreen
       user={userMock}
-      authenticate={authenticateMock}
+      create={authenticateMock}
       logout={logoutMock}
       notFoundComponent={NotFoundScreen}
     />

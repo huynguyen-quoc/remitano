@@ -19,6 +19,10 @@ export default {
         immutable(state, {
           status: { $set: AppStatus.RUNNING }
         }),
+      [ActionTypes.USER_CREATE]: state =>
+        immutable(state, {
+          status: { $set: AppStatus.RUNNING }
+        }),
       [ActionTypes.USER_LOGIN_SUCCESS]: (state, { payload }) =>
         immutable(state, {
           isAuthenticated: { $set: true },

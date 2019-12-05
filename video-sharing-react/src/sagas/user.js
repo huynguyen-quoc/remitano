@@ -28,6 +28,28 @@ export function* authenticate(param) {
 }
 
 /**
+ * create
+ */
+export function* create(param) {
+  const { email, password } = param.payload;
+  try {
+    const payload = { method: "POST", ...param };
+    yield call(request, "/users", payload);
+
+    yield put({
+      type: ActionTypes.USER_LOGIN,
+      payload: { email: email, password: password }
+    });
+  } catch (err) {
+    /* istanbul ignore next */
+    yield put({
+      type: ActionTypes.USER_LOGIN,
+      payload: { email: email, password: password }
+    });
+  }
+}
+
+/**
  * Logout
  */
 export function* logout() {
@@ -42,6 +64,7 @@ export function* logout() {
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.USER_LOGIN, authenticate),
-    takeLatest(ActionTypes.USER_LOGOUT, logout)
+    takeLatest(ActionTypes.USER_LOGOUT, logout),
+    takeLatest(ActionTypes.USER_CREATE, create)
   ]);
 }

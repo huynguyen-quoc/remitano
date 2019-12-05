@@ -1,4 +1,4 @@
-import { login, logout } from "actions";
+import { create, logout } from "actions";
 
 import MainScreen from "components/screens/Main";
 import { bindActionCreators } from "redux";
@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
   return {
-    authenticate: bindActionCreators(login, dispatch),
+    create: bindActionCreators(create, dispatch),
     logout: bindActionCreators(logout, dispatch)
   };
 }

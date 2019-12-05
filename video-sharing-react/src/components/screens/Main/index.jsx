@@ -9,15 +9,15 @@ import { AppRoutes as routes } from "configurations";
 class MainScreen extends PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired,
-    authenticate: PropTypes.func.isRequired,
+    create: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     notFoundComponent: PropTypes.any.isRequired
   };
   render() {
-    const { user, notFoundComponent, authenticate, logout } = this.props;
+    const { user, notFoundComponent, create, logout } = this.props;
     return (
       <BrowserRouter>
-        <Header authenticate={authenticate} user={user} logout={logout} />
+        <Header create={create} user={user} logout={logout} />
         <Router
           routes={routes}
           notFoundComponent={notFoundComponent}

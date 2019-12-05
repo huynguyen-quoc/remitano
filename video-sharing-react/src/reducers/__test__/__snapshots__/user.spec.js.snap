@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`User Reducers should handle USER_CREATE 1`] = `
+Object {
+  "info": Object {
+    "email": "",
+    "id": -1,
+    "token": "",
+  },
+  "isAuthenticated": false,
+  "status": undefined,
+}
+`;
+
 exports[`User Reducers should handle USER_LOGIN 1`] = `
 Object {
   "info": Object {
