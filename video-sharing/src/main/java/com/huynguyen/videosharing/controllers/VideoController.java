@@ -49,7 +49,7 @@ public class VideoController {
     return ResponseFactory.created(response);
   }
 
-  @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {
+  @GetMapping(produces = {
       MediaType.APPLICATION_JSON_VALUE})
   @Transactional(readOnly = true)
   public ResponseEntity<PageDataResponse<VideoResponseDTO>> findAll(
@@ -57,7 +57,7 @@ public class VideoController {
       @RequestParam(value = "page_size", required = false) Integer pageSize) {
     log.info("list videos with page");
     pageIndex = pageIndex != null ? pageIndex : 0;
-    pageSize = pageSize != null && pageSize <= 50 ? pageSize : 50;
+    pageSize = pageSize != null && pageSize <= 25 ? pageSize : 25;
     PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
     Page<Video> videoPage = service.findAll(pageRequest);
     List<VideoResponseDTO> videos = videoPage.get().map(
