@@ -21,5 +21,15 @@ Object {
     },
     "isAuthenticated": false,
   },
+  "videos": Object {
+    "data": Array [],
+    "page": Object {
+      "current_page": 0,
+      "has_next": false,
+      "has_previous": false,
+      "total_elements": 0,
+      "total_pages": 1,
+    },
+  },
 }
 `;

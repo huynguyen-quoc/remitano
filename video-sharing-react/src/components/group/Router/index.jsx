@@ -6,7 +6,7 @@ import RoutePrivate from "./RoutePrivate";
 import RoutePublic from "./RoutePublic";
 import { Switch } from "react-router";
 
-function PublicRouter(props) {
+function Router(props) {
   const { isAuthenticated, notFoundComponent, homeComponent, routes } = props;
   return (
     <Switch>
@@ -33,11 +33,11 @@ function PublicRouter(props) {
   );
 }
 
-PublicRouter.propTypes = {
+Router.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   routes: PropTypes.array.isRequired,
   notFoundComponent: PropTypes.any.isRequired,
   homeComponent: PropTypes.any.isRequired
 };
 
-export default PublicRouter;
+export default Router;

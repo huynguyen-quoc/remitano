@@ -1,5 +1,6 @@
 import { create, logout } from "actions";
 
+import HomeScreen from "components/screens/Home";
 import MainScreen from "components/screens/Main";
 import NotFoundScreen from "containers/screens/NotFound";
 import React from "react";
@@ -20,6 +21,7 @@ describe("Main Screen", () => {
       create={authenticateMock}
       logout={logoutMock}
       notFoundComponent={NotFoundScreen}
+      homeComponent={HomeScreen}
     />
   );
 

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Video Reducers should handle VIDEO_FETCH 1`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
+  "status": undefined,
+}
+`;
+
+exports[`Video Reducers should handle VIDEO_FETCH_FAILURE 1`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
+  "status": undefined,
+}
+`;
+
+exports[`Video Reducers should handle VIDEO_FETCH_SUCCESS 1`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
+  "status": undefined,
+}
+`;
+
+exports[`Video Reducers should return the initial state 1`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
+}
+`;
