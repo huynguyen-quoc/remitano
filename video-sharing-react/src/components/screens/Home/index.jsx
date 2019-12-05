@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 
 import InfiniteScroll from "react-infinite-scroller";
 import PropTypes from "prop-types";
-import VideoPlayer from "./components/VideoPlayer";
+import VideoPlayer from "components/basic/VideoPlayer";
 
 class HomeScreen extends PureComponent {
   static propTypes = {

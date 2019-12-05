@@ -1,5 +1,6 @@
+import reducer, { user } from "reducers";
+
 import { ActionTypes } from "actions/user/type";
-import reducer from "reducers";
 
 describe("User Reducers", () => {
   it("should return the initial state", () => {

@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 import React from "react";
 import Router from "components/group/Router";
 import configureMockStore from "redux-mock-store";
+import { mount } from "enzyme";
 import { AppRoutes as routes } from "configurations";
-import { shallow } from "enzyme";
 
 describe("Router", () => {
   const mockStore = configureMockStore();
@@ -23,7 +23,7 @@ describe("Router", () => {
     }
   });
   it("should redirect for unauthenticated access", () => {
-    const render = shallow(
+    const render = mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/private"]}>
           <Router
@@ -40,7 +40,7 @@ describe("Router", () => {
   });
 
   it("should redirect for authenticated access", () => {
-    const render = shallow(
+    const render = mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/private"]}>
           <Router
