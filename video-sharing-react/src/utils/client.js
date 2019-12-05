@@ -59,7 +59,7 @@ export function request(url: string, options: Object = {}): Promise<*> {
 
   const headers = {
     accept: "application/json",
-    "content-type": "application/json",
+    "Content-Type": "application/json",
     ...config.headers
   };
   const requestConfig: AxiosRequestConfig = {
@@ -73,7 +73,6 @@ export function request(url: string, options: Object = {}): Promise<*> {
   if (requestConfig.method !== "GET") {
     requestConfig.data = JSON.stringify(config.payload);
   }
-
   return axios
     .request(requestConfig)
     .then(async response => response.data)

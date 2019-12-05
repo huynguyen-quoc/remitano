@@ -1,3 +1,5 @@
 import { create, login, logout } from "./user";
 
-export { login, logout, create };
+import { fetch } from "./video";
+
+export { login, logout, create, fetch };

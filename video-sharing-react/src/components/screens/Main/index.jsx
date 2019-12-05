@@ -11,15 +11,23 @@ class MainScreen extends PureComponent {
     user: PropTypes.object.isRequired,
     create: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
-    notFoundComponent: PropTypes.any.isRequired
+    notFoundComponent: PropTypes.any.isRequired,
+    homeComponent: PropTypes.any.isRequired
   };
   render() {
-    const { user, notFoundComponent, create, logout } = this.props;
+    const {
+      user,
+      notFoundComponent,
+      homeComponent,
+      create,
+      logout
+    } = this.props;
     return (
       <BrowserRouter>
         <Header create={create} user={user} logout={logout} />
         <Router
           routes={routes}
+          homeComponent={homeComponent}
           notFoundComponent={notFoundComponent}
           isAuthenticated={user.isAuthenticated}
         />

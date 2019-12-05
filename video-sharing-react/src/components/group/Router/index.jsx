@@ -7,7 +7,7 @@ import RoutePublic from "./RoutePublic";
 import { Switch } from "react-router";
 
 function PublicRouter(props) {
-  const { isAuthenticated, notFoundComponent, routes } = props;
+  const { isAuthenticated, notFoundComponent, homeComponent, routes } = props;
   return (
     <Switch>
       {routes.map(route => {
@@ -24,7 +24,7 @@ function PublicRouter(props) {
           />
         );
       })}
-      <Route path="/"></Route>
+      <Route path="/" component={homeComponent}></Route>
       <RoutePublic
         isAuthenticated={isAuthenticated}
         component={notFoundComponent}
@@ -36,7 +36,8 @@ function PublicRouter(props) {
 PublicRouter.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   routes: PropTypes.array.isRequired,
-  notFoundComponent: PropTypes.any.isRequired
+  notFoundComponent: PropTypes.any.isRequired,
+  homeComponent: PropTypes.any.isRequired
 };
 
 export default PublicRouter;
