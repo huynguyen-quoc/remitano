@@ -1,14 +1,17 @@
-import React from "react";
+import { persistor, store } from "./store";
 
+import ConnectedMainScreen from "containers/screens/Main";
+import NotFoundScreen from "containers/screens/NotFound";
+import { PersistGate } from "redux-persist/lib/integration/react";
+import { Provider } from "react-redux";
+import React from "react";
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/addProject" component={AddProject} />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <ConnectedMainScreen notFoundComponent={NotFoundScreen} />
+      </PersistGate>
+    </Provider>
   );
 }
 

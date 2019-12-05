@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 /* istanbul ignore next */
-export const AppRoutes = [
+const AppRoutes = [
   {
     path: "/404",
     component: lazy(
@@ -9,3 +9,5 @@ export const AppRoutes = [
     )
   }
 ];
+
+export default AppRoutes;

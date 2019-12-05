@@ -1,10 +1,9 @@
 import React, { PureComponent } from "react";
-import NotFoundWrapper from "./components/NotFoundWrapper";
 
-export class NotFoundScreen extends PureComponent {
+export class HomePage extends PureComponent {
   render() {
     return (
-      <NotFoundWrapper className="404-error-page">
+      <React.Fragment>
         <div className="error-content">
           <h1>404</h1>
           <h3>Looks like you got lost</h3>
@@ -13,9 +12,9 @@ export class NotFoundScreen extends PureComponent {
         <div className="error-art-work">
           <img alt="#" src={Image} />
         </div>
-      </NotFoundWrapper>
+      </React.Fragment>
     );
   }
 }
 
-export default NotFoundScreen;
+export default HomePage;
