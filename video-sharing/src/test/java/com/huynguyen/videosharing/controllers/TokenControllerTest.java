@@ -61,7 +61,7 @@ class TokenControllerTest {
   void generateTokenShouldReturnCorrectTokenAndCorrectHttpStatusAndCallServiceATimes()
       throws Exception {
     TokenDTO request = TokenDTO.builder().password("test")
-        .username("test_username").build();
+        .email("test_email").build();
     ObjectMapper objectMapper = new ObjectMapper();
     String jsonString = objectMapper.writeValueAsString(request);
     Authentication mockAuthentication = mock(Authentication.class);

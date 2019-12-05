@@ -62,12 +62,12 @@ class UserControllerTest {
       throws Exception {
 
     UserDTO request = UserDTO.builder().password("test")
-        .username("test_username").build();
+        .email("test_email").build();
     ObjectMapper objectMapper = new ObjectMapper();
     String jsonString = objectMapper.writeValueAsString(request);
     User model = mock(User.class);
     UserResponseDTO response = UserResponseDTO.builder().id(model.getId())
-        .status(UserStatus.CREATED).username(model.getUsername()).build();
+        .status(UserStatus.CREATED).email(model.getUsername()).build();
     when(usersMapper.transform(model)).thenReturn(response);
     when(usersMapper.transform(request)).thenReturn(model);
     when(userService.create(any(User.class))).thenReturn(model);
@@ -80,7 +80,7 @@ class UserControllerTest {
         .andExpect(status().isCreated())
         .andExpect(jsonPath("$.id", is(response.getId().intValue())))
         .andExpect(jsonPath("$.status", is(response.getStatus().name())))
-        .andExpect(jsonPath("$.username", is(response.getUsername())));
+        .andExpect(jsonPath("$.email", is(response.getEmail())));
 
     verify(userService, times(1)).create((any(User.class)));
   }

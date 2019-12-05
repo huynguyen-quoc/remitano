@@ -40,7 +40,7 @@ public class User extends Auditable<Long> implements UserDetails {
   private Long id;
 
   @Setter
-  private String username;
+  private String email;
 
   @Setter
   private String password;
@@ -52,6 +52,11 @@ public class User extends Auditable<Long> implements UserDetails {
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return null;
+  }
+
+  @Override
+  public String getUsername() {
+    return this.getEmail();
   }
 
   @Override

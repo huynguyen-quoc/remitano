@@ -17,7 +17,7 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: pk_users
               - column:
-                  name: username
+                  name: email
                   type: VARCHAR(100)
               - column:
                   name: password

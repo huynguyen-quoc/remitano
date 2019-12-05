@@ -43,5 +43,5 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X] %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex"
   level:
     "org.apache.kafka": error
-    "org.springframework.security": debug
-    "net.ttddyy.dsproxy": trace
+    "org.springframework.security": error
+    "net.ttddyy.dsproxy": warn

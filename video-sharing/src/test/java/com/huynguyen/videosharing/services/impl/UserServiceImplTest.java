@@ -68,7 +68,7 @@ class UserServiceImplTest {
   void loadUserByUsernameShouldReturnCorrectUserAndCallRepositoryOneTimes() {
 
     User mockUser = mock(User.class);
-    when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(mockUser));
+    when(userRepository.findByEmail(anyString())).thenReturn(Optional.of(mockUser));
 
     UserDetails user = service.loadUserByUsername("username");
 
@@ -76,18 +76,18 @@ class UserServiceImplTest {
     assertThat(user.getPassword()).isEqualTo(mockUser.getPassword());
     assertThat(user.getUsername()).isEqualTo(mockUser.getUsername());
 
-    verify(userRepository, times(1)).findByUsername(anyString());
+    verify(userRepository, times(1)).findByEmail(anyString());
   }
 
   @Test
   void loadUserByUsernameShouldThrowExceptionAndCallRepositoryOneTimesWhenUserNameNotFound() {
 
-    when(userRepository.findByUsername(anyString())).thenReturn(Optional.empty());
+    when(userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
 
     assertThatThrownBy(() -> {
       service.loadUserByUsername("username");
     }).isInstanceOf(UsernameNotFoundException.class);
 
-    verify(userRepository, times(1)).findByUsername(anyString());
+    verify(userRepository, times(1)).findByEmail(anyString());
   }
 }

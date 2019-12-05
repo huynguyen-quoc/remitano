@@ -32,17 +32,17 @@ public class TokenController {
       MediaType.APPLICATION_JSON_VALUE})
   public ResponseEntity<TokenResponseDTO> generateToken(
       @RequestBody TokenDTO request) {
-
+    log.info("Generate token for user info {}", request);
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
-            request.getUsername(),
+            request.getEmail(),
             request.getPassword()
         )
     );
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
     String jwt = tokenProvider.generate(authentication);
-    return ResponseFactory.created(TokenResponseDTO.builder().type("bearer").token(jwt).build());
+    return ResponseFactory.success(TokenResponseDTO.builder().type("bearer").token(jwt).build());
   }
 
 
