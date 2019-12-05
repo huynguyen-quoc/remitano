@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 
+import { Link } from "react-router-dom";
 import LoginForm from "components/basic/Form/Login";
 import LogoutForm from "components/basic/Form/Logout";
 import PropTypes from "prop-types";
@@ -57,9 +58,9 @@ class Header extends PureComponent {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
         <div className="container">
-          <a className="navbar-brand" href="Dashboard.html">
+          <Link className="navbar-brand" to="/">
             Funny Movies
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

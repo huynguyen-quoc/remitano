@@ -30,7 +30,6 @@ export function* authenticate(param) {
  * Logout
  */
 export function* logout() {
-  console.log("logout ok");
   yield put({
     type: ActionTypes.USER_LOGOUT_SUCCESS
   });
