@@ -13,6 +13,7 @@ export function* authenticate(param) {
     const response = yield call(request, "/token", payload);
     const { token } = response;
     const user = jwt_decode(token);
+
     yield put({
       type: ActionTypes.USER_LOGIN_SUCCESS,
       payload: { token: token, email: user.email, id: user.id }

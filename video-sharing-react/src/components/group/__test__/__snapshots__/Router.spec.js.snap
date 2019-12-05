@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Router should redirect for authenticated access 1`] = `""`;
+
+exports[`Router should redirect for unauthenticated access 1`] = `""`;

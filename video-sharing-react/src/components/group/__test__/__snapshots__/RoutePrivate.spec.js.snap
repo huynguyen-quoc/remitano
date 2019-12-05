@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Route Private should redirect for authenticated access 1`] = `"<div class=\\"sc-bdVaJa bDWFJH 404-error-page\\"><div class=\\"error-content\\"><h1>404</h1><h3>Looks like you got lost</h3><p>The page youre looking for doesnt exist or has been moved</p></div></div>"`;
+
+exports[`Route Private should redirect for unauthenticated access 1`] = `""`;

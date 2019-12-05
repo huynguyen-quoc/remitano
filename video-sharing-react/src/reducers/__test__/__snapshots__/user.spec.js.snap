@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User Reducers should handle USER_LOGIN 1`] = `
+Object {
+  "info": Object {
+    "email": "",
+    "id": -1,
+    "token": "",
+  },
+  "isAuthenticated": false,
+  "status": undefined,
+}
+`;
+
+exports[`User Reducers should handle USER_LOGIN_SUCCESS 1`] = `
+Object {
+  "info": Object {
+    "email": undefined,
+    "id": undefined,
+    "token": undefined,
+  },
+  "isAuthenticated": true,
+  "status": undefined,
+}
+`;
+
+exports[`User Reducers should handle USER_LOGOUT 1`] = `
+Object {
+  "info": Object {
+    "email": "",
+    "id": -1,
+    "token": "",
+  },
+  "isAuthenticated": false,
+  "status": undefined,
+}
+`;
+
+exports[`User Reducers should handle USER_LOGOUT_SUCCESS 1`] = `
+Object {
+  "info": Object {
+    "email": "",
+    "id": -1,
+    "token": "",
+  },
+  "isAuthenticated": false,
+  "status": undefined,
+}
+`;
+
+exports[`User Reducers should return the initial state 1`] = `
+Object {
+  "info": Object {
+    "email": "",
+    "id": -1,
+    "token": "",
+  },
+  "isAuthenticated": false,
+}
+`;

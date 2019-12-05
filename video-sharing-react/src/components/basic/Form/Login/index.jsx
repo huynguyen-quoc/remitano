@@ -18,9 +18,6 @@ function LoginForm(props) {
             value={email}
             onChange={onChange}
           />
-          {errors.email && (
-            <div className="invalid-feedback">{errors.email}</div>
-          )}
         </div>
         <div className="col-auto">
           <input
@@ -33,9 +30,6 @@ function LoginForm(props) {
             value={password}
             onChange={onChange}
           />
-          {errors.password && (
-            <div className="invalid-feedback">{errors.password}</div>
-          )}
         </div>
         <div className="col-auto">
           <button type="submit" className="btn btn-success">

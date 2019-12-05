@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`client request should execute a GET successfully 1`] = `"{\\"hello\\":\\"world\\"}"`;
+
+exports[`client request should execute a POST successfully 1`] = `null`;

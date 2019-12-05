@@ -2,11 +2,30 @@
   "name": "video-sharing-react",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/containers/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/src/actions/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/src/configurations/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/src/App.jsx",
+      "!<rootDir>/src/serviceWorker.js",
+      "!<rootDir>/src/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
-    "connected-react-router": "^6.6.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "flow-bin": "^0.113.0",
@@ -50,5 +69,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "devDependencies": {
+    "redux-saga-test-plan": "^4.0.0-rc.3"
+  }
 }
