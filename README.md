@@ -13,6 +13,11 @@
 
 #### CLIENT ####
 1. Navigate to video-sharing-react folder
+2. Run command to install modules
+
+	```
+	yarn install
+	```
 3. Run command to start client react application
 
 	```
