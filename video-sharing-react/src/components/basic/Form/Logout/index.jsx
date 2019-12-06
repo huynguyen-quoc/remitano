@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 function LogoutForm(props) {
-  const { user, onLogout, onSharing } = props;
+  const { user, onLogout } = props;
   const { info } = user;
   const { email } = info;
   return (
@@ -11,18 +11,14 @@ function LogoutForm(props) {
       <div className="collapse navbar-collapse" id="mobile-nav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item mr-2">
-            <Link className="nav-link text-white" to="/dashboard">
+            <Link className="nav-link text-white" to="/">
               Wellcome <b>{email}</b>
             </Link>
           </li>
           <li className="nav-item mr-2">
-            <button
-              type="button"
-              className="btn btn-success"
-              onClick={onSharing}
-            >
+            <Link className="btn btn-success" to="/video-sharing">
               Share a movie
-            </button>
+            </Link>
           </li>
           <li className="nav-item">
             <button type="button" className="btn btn-danger" onClick={onLogout}>
@@ -40,8 +36,7 @@ LogoutForm.defaultProps = {
 
 LogoutForm.propTypes = {
   user: PropTypes.object,
-  onLogout: PropTypes.func,
-  onSharing: PropTypes.func
+  onLogout: PropTypes.func
 };
 
 export default LogoutForm;

@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Reducers should handle CLEAR_MESSAGE 1`] = `
+Object {
+  "message": Object {
+    "content": "",
+    "type": "",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should handle USER_LOGIN 1`] = `
+Object {
+  "message": Object {
+    "content": "",
+    "type": "",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should handle USER_LOGIN_FAILURE 1`] = `
+Object {
+  "message": Object {
+    "content": "Login failed!",
+    "type": "danger",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should handle USER_LOGIN_SUCCESS 1`] = `
+Object {
+  "message": Object {
+    "content": "",
+    "type": "",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should handle VIDEO_FETCH 1`] = `
+Object {
+  "message": Object {
+    "content": "",
+    "type": "",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should handle VIDEO_SHARING 1`] = `
+Object {
+  "message": Object {
+    "content": "",
+    "type": "",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should handle VIDEO_SHARING_FAILURE 1`] = `
+Object {
+  "message": Object {
+    "content": "There are some problem has been occured!",
+    "type": "danger",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should handle VIDEO_SHARING_SUCCESS 1`] = `
+Object {
+  "message": Object {
+    "content": "Your video has been shared!",
+    "type": "success",
+  },
+  "status": undefined,
+}
+`;
+
+exports[`App Reducers should return the initial state 1`] = `
+Object {
+  "info": Object {
+    "email": "",
+    "id": -1,
+    "token": "",
+  },
+  "isAuthenticated": false,
+}
+`;

@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -58,7 +60,8 @@ public class VideoController {
     log.info("list videos with page");
     pageIndex = pageIndex != null ? pageIndex : 0;
     pageSize = pageSize != null && pageSize <= 25 ? pageSize : 25;
-    PageRequest pageRequest = PageRequest.of(pageIndex, pageSize);
+    Sort sortOrder = Sort.by(Direction.DESC, "createdAt");
+    PageRequest pageRequest = PageRequest.of(pageIndex, pageSize, sortOrder);
     Page<Video> videoPage = service.findAll(pageRequest);
     List<VideoResponseDTO> videos = videoPage.get().map(
         mapper::transform).collect(Collectors.toList());

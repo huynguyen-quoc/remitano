@@ -15,14 +15,6 @@ export const userState = {
 export default {
   user: handleActions(
     {
-      [ActionTypes.USER_LOGIN]: state =>
-        immutable(state, {
-          status: { $set: AppStatus.RUNNING }
-        }),
-      [ActionTypes.USER_CREATE]: state =>
-        immutable(state, {
-          status: { $set: AppStatus.RUNNING }
-        }),
       [ActionTypes.USER_LOGIN_SUCCESS]: (state, { payload }) =>
         immutable(state, {
           isAuthenticated: { $set: true },
@@ -30,8 +22,7 @@ export default {
             id: { $set: payload.id },
             email: { $set: payload.email },
             token: { $set: payload.token }
-          },
-          status: { $set: AppStatus.READY }
+          }
         }),
       [ActionTypes.USER_LOGOUT]: state =>
         immutable(state, {

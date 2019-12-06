@@ -3,7 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 
-export const RoutePrivate = ({
+const RoutePrivate = ({
   component: Component,
   isAuthenticated,
   to,

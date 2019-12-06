@@ -8,7 +8,17 @@ describe("Video Reducers", () => {
 
   it(`should handle ${ActionTypes.VIDEO_FETCH}`, () => {
     expect(
-      reducer.videos(undefined, { type: ActionTypes.VIDEO_FETCH })
+      reducer.videos(undefined, {
+        type: ActionTypes.VIDEO_FETCH,
+        payload: { page_index: 0 }
+      })
+    ).toMatchSnapshot();
+
+    expect(
+      reducer.videos(undefined, {
+        type: ActionTypes.VIDEO_FETCH,
+        payload: { page_index: 1 }
+      })
     ).toMatchSnapshot();
   });
   it(`should handle ${ActionTypes.VIDEO_FETCH_SUCCESS}`, () => {
@@ -31,6 +41,26 @@ describe("Video Reducers", () => {
   it(`should handle ${ActionTypes.VIDEO_FETCH_FAILURE}`, () => {
     expect(
       reducer.videos(undefined, { type: ActionTypes.VIDEO_FETCH_FAILURE })
+    ).toMatchSnapshot();
+  });
+
+  it(`should handle ${ActionTypes.VIDEO_SHARING}`, () => {
+    expect(
+      reducer.videos(undefined, {
+        type: ActionTypes.VIDEO_SHARING
+      })
+    ).toMatchSnapshot();
+  });
+  it(`should handle ${ActionTypes.VIDEO_SHARING_SUCCESS}`, () => {
+    const actions = {
+      type: ActionTypes.VIDEO_SHARING_SUCCESS
+    };
+    expect(reducer.videos(undefined, actions)).toMatchSnapshot();
+  });
+
+  it(`should handle ${ActionTypes.VIDEO_SHARING_FAILURE}`, () => {
+    expect(
+      reducer.videos(undefined, { type: ActionTypes.VIDEO_SHARING_FAILURE })
     ).toMatchSnapshot();
   });
 });

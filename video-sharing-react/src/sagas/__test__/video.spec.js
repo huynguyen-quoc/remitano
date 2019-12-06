@@ -1,6 +1,6 @@
 import * as matchers from "redux-saga-test-plan/matchers";
 
-import video, { fetch } from "sagas/video";
+import video, { fetch, share } from "sagas/video";
 
 import { ActionTypes } from "actions/video/type";
 import { expectSaga } from "redux-saga-test-plan";
@@ -41,6 +41,30 @@ describe("User Sagas", () => {
             total_elements: 0
           }
         }
+      })
+      .run();
+  });
+
+  it("should match the sharing saga", () => {
+    const fakeDataReturn = {
+      items: [
+        {
+          snippet: {
+            title: "test",
+            description: "test"
+          }
+        }
+      ]
+    };
+    expectSaga(share, {
+      payload: {
+        videoUrl: "https://www.youtube.com/watch?v=EGhSY00oCk",
+        token: "test"
+      }
+    })
+      .provide([[matchers.call.fn(request), fakeDataReturn]])
+      .put({
+        type: ActionTypes.VIDEO_SHARING_SUCCESS
       })
       .run();
   });

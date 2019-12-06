@@ -3,8 +3,9 @@ import { lazy } from "react";
 const AppRoutes = [
   {
     path: "/video-sharing",
+    exact: true,
     component: lazy(
-      /* istanbul ignore next */ () => import("containers/screens/Home")
+      /* istanbul ignore next */ () => import("containers/screens/VideoSharing")
     )
   }
 ];

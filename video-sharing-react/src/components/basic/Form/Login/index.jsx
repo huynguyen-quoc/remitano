@@ -15,6 +15,7 @@ function LoginForm(props) {
             })}
             placeholder="Email Address"
             name="email"
+            required
             value={email}
             onChange={onChange}
           />
@@ -27,6 +28,7 @@ function LoginForm(props) {
             })}
             placeholder="Password"
             name="password"
+            required
             value={password}
             onChange={onChange}
           />

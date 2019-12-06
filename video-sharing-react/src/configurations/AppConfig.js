@@ -1,7 +1,7 @@
 const AppConfig = {
-  routePrefix: "/dashboard",
-  dateFormat: "DD/MM/YYYY",
-  dateTimeFormat: "DD/MM/YYYY HH:mm:ss"
+  routePrefix: "",
+  youtubeAPIKey: "AIzaSyB7mOeBlVf2sixfEqOAopTNTIYEbcweGjM",
+  youtubeAPIURL: "https://www.googleapis.com/youtube/v3/videos"
 };
 
 export default AppConfig;

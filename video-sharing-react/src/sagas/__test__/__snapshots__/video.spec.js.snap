@@ -16,6 +16,19 @@ Object {
       },
       "type": "FORK",
     },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "VIDEO_SHARING",
+          "@@redux-saga-test-plan/json/function/share",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
   ],
   "take": Array [
     Object {
@@ -23,6 +36,14 @@ Object {
       "combinator": false,
       "payload": Object {
         "pattern": "VIDEO_FETCH",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "VIDEO_SHARING",
       },
       "type": "TAKE",
     },

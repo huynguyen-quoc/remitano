@@ -10,7 +10,19 @@ Object {
     "total_elements": 0,
     "total_pages": 1,
   },
-  "status": undefined,
+}
+`;
+
+exports[`Video Reducers should handle VIDEO_FETCH 2`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
 }
 `;
 
@@ -38,7 +50,45 @@ Object {
     "total_elements": 0,
     "total_pages": 1,
   },
-  "status": undefined,
+}
+`;
+
+exports[`Video Reducers should handle VIDEO_SHARING 1`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
+}
+`;
+
+exports[`Video Reducers should handle VIDEO_SHARING_FAILURE 1`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
+}
+`;
+
+exports[`Video Reducers should handle VIDEO_SHARING_SUCCESS 1`] = `
+Object {
+  "data": Array [],
+  "page": Object {
+    "current_page": 0,
+    "has_next": false,
+    "has_previous": false,
+    "total_elements": 0,
+    "total_pages": 1,
+  },
 }
 `;
 

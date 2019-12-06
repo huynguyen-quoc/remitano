@@ -1,4 +1,4 @@
-import LogutForm from "components/basic/Form/Logout";
+import LogoutForm from "components/basic/Form/Logout";
 import React from "react";
 import { shallow } from "enzyme";
 
@@ -8,7 +8,7 @@ describe("Logout Form", () => {
     info: { email: "test" }
   };
   const wrapper = shallow(
-    <LogutForm onLogout={onLogoutMock} user={mockUser} />
+    <LogoutForm onLogout={onLogoutMock} user={mockUser} />
   );
 
   it("should render properly", () => {

@@ -13,6 +13,13 @@ Object {
     "rehydrated": true,
     "version": -1,
   },
+  "app": Object {
+    "message": Object {
+      "content": "",
+      "type": "",
+    },
+    "status": undefined,
+  },
   "user": Object {
     "info": Object {
       "email": "",

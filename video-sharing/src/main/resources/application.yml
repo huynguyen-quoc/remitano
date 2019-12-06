@@ -44,4 +44,4 @@ logging:
   level:
     "org.apache.kafka": error
     "org.springframework.security": error
-    "net.ttddyy.dsproxy": warn
+    "net.ttddyy.dsproxy": trace

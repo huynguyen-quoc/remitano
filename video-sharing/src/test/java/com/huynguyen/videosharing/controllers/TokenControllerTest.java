@@ -73,7 +73,7 @@ class TokenControllerTest {
         .content(jsonString)
         .contentType(MediaType.APPLICATION_JSON_VALUE)
         .accept(MediaType.APPLICATION_JSON_VALUE))
-        .andExpect(status().isCreated())
+        .andExpect(status().isOk())
         .andExpect(jsonPath("$.type", is("bearer")))
         .andExpect(jsonPath("$.token", is("token_text")));
 
