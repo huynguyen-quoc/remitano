@@ -17,9 +17,9 @@ spring:
       max-lifetime: 900000
       connection-timeout: 50000
       pool-name: ${spring.application.name}-${spring.profiles.active}-pool
-    url: jdbc:postgresql://postgres:5432/video_sharing
-    username: user
-    password: password
+    url: jdbc:postgresql://ec2-174-129-255-46.compute-1.amazonaws.com:5432/d6mg0pk5vgffnk
+    username: cpwgwtbrtunead
+    password: b7b1db3cf1c44ec197da747e9362e0b99445dcf267aee75685c06a9b859f65d4
   jpa:
     open-in-view: false
     properties:
@@ -44,4 +44,4 @@ logging:
   level:
     "org.apache.kafka": error
     "org.springframework.security": error
-    "net.ttddyy.dsproxy": trace
+    "net.ttddyy.dsproxy": warn
