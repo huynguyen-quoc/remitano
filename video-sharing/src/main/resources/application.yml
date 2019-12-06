@@ -1,8 +1,5 @@
 server:
   port: 8080
-  error:
-    whitelabel:
-      enabled: false
 spring:
   profiles:
     active: local
@@ -17,9 +14,9 @@ spring:
       max-lifetime: 900000
       connection-timeout: 50000
       pool-name: ${spring.application.name}-${spring.profiles.active}-pool
-    url: jdbc:postgresql://ec2-174-129-255-46.compute-1.amazonaws.com:5432/d6mg0pk5vgffnk
-    username: cpwgwtbrtunead
-    password: b7b1db3cf1c44ec197da747e9362e0b99445dcf267aee75685c06a9b859f65d4
+    url: jdbc:postgresql://localhost:5432/d6mg0pk5vgffnk
+    username: user
+    password: password
   jpa:
     open-in-view: false
     properties:
@@ -34,10 +31,9 @@ spring:
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.yml
     enabled: true
-  mvc:
-    throw-exception-if-no-handler-found: true
   resources:
-    add-mappings: false
+    add-mappings: true
+    static-locations: classpath:/public/
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X] %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex"
