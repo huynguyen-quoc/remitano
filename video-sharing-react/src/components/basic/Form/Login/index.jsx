@@ -9,7 +9,7 @@ function LoginForm(props) {
       <div className="form-row align-items-center">
         <div className="col-auto">
           <input
-            type="text"
+            type="email"
             className={classnames("form-control form-control-sm", {
               "is-invalid": errors.email
             })}
